@@ -1,75 +1,78 @@
-# Nuxt 3 Minimal Starter
+ # Anim_Slides
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Разработанный проект представляет собой демонстрацию работы компонента анимированных обложек страницы, а также его окружения. 
 
-## Setup
+Проект реализован с использованием технологий Nuxt 3 Composition API, GSAP, TypeScript, Shadcn-vue и Tailwind CSS.
 
-Make sure to install the dependencies:
-
+## Описание структуры проекта
 ```bash
-# npm
-npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
+nuxt-project/
+├── public/            # Статические изображения
+├── assets/            # Стили и иконки
+├── components/        # Компоненты Vue
+├── pages/             # Представления (страницы)
+├── layouts/           # Лейауты проекта
+├── services/          # Методы апи сущностей проекта
+├── models/            # Интерфейсы сущностей проекта
+├── app.vue            # Основной компонент приложения
 ```
 
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
+## Описание ключевых компонентов
+### SlidesCover. Компонент анимированных обложек
 ```bash
-# npm
-npm run dev
+components/homepage/SlidesCover/SlidesCover.vue
+```
+PROPS:
+```bash
+value: {
+    type: Array<CoverModel>,
+    default: []
+}
 
-# pnpm
-pnpm run dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
+-- Принимает массив объектов, содержащих информацию об обложках
+   Интерфейс объекста обложки описан: models/cover.model.ts
 ```
 
-## Production
-
-Build the application for production:
-
 ```bash
-# npm
-npm run build
+titlePath: {
+    type: String,
+    default: ''
+}
 
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
-
-# bun
-bun run build
+-- Принимает src последней overlay обложки, являющейся тайтлом страницы
+   При отсутствии - не отображается
 ```
 
-Locally preview production build:
-
 ```bash
-# npm
-npm run preview
+mainBgPath: {
+    type: String,
+    default: ''
+},
 
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
+-- Принимает src первой встречающей обложки
+   При отсутствии - не отображается
 ```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+
+### HomepageBar. Компонент фильтров 
+
+```bash
+components/homepage/HomepageBar/HomepageBar.vue
+```
+Содержит компоненты HomepageBarSelect и HomepageBarLink, эмулирующие фильтры поиска
+
+### Promotion. Строка уведомлений
+```bash
+components/layouts/Promotion.vue
+```
+
+PROPS:
+```bash
+value: {
+    type: String,
+    default: ''
+}
+
+-- Принимает объект promotion, содержащий имя кнопки, уведомление и ссылку
+   Интерфейс объекта Promotion описан: models/promotion.model.ts
+```
