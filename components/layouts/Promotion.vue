@@ -1,16 +1,14 @@
 <script setup lang="ts">
 import Button from "~/components/ui/button/Button.vue";
 import CloseIcon from "~/components/icons/CloseIcon.vue";
+import type {PropType} from "vue";
+import type PromotionModel from "~/models/promotion.model";
 
 const props = defineProps({
-  button: {
-    type: String,
-    default: ''
+  value: {
+    type: Object as PropType<PromotionModel>,
+    default: {}
   },
-  title: {
-    type: String,
-    default: ''
-  }
 })
 
 const emit = defineEmits(['close'])
@@ -24,18 +22,18 @@ const close = () => {
 <template>
 <div class="bg-light flex items-center justify-between md:px-10 p-2.5">
   <span class="md:block hidden" />
-  <div class="flex gap-x-5">
+  <NuxtLink :to="value.link" class="flex gap-x-5">
     <Button size="sm">
-      {{ button }}
+      {{ value.button }}
     </Button>
 
-    <NuxtLink to="#" class="button-underlined --reversed md:inline hidden">
-      {{ title }}
-    </NuxtLink>
-  </div>
+    <p class="button-underlined --reversed md:inline hidden">
+      {{ value.title }}
+    </p>
+  </NuxtLink>
 
   <NuxtLink to="#" class="button-underlined --reversed text-xs md:hidden">
-    {{ title }}
+    {{ value.title }}
   </NuxtLink>
 
   <CloseIcon class="cursor-pointer"

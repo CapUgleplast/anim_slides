@@ -13,7 +13,8 @@ type PromotionRef = {
 const promotion = reactive<PromotionRef>({
   value: {
     title: '',
-    button: ''
+    button: '',
+    link: '#'
   }
 })
 
@@ -23,7 +24,7 @@ await new ContentService()
         promotion.value = res
     })
 
-const showPromotion = ref(!!(promotion.value.button || promotion.value.title))
+const showPromotion = ref(!!(promotion.value.button || promotion.value.title || promotion.value.link))
 
 </script>
 
@@ -32,8 +33,7 @@ const showPromotion = ref(!!(promotion.value.button || promotion.value.title))
   <div class="header fixed top-0 w-full z-20">
       <div v-if="showPromotion"
            class="">
-        <Promotion :button="promotion.value.button"
-                   :title="promotion.value.title"
+        <Promotion :value="promotion.value"
                    @close="() => showPromotion = false" />
       </div>
       <DefaultHeader />
