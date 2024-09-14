@@ -39,7 +39,7 @@ const showPromotion = ref(!!(promotion.value.button || promotion.value.title || 
       <DefaultHeader />
   </div>
   <slot />
-  <PhoneButton class="z-20 fixed bottom-4 right-2 lg:right-5 xl:right-10"/>
+  <PhoneButton class="z-20 fixed bottom-4 right-0 lg:right-5 xl:right-10"/>
 </div>
 </template>
 
